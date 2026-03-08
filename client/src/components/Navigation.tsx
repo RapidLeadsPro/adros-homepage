@@ -18,10 +18,10 @@ export default function Navigation() {
       <div className="container flex items-center justify-between h-16">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center shadow-md shadow-purple-500/20">
             <span className="text-white font-bold text-sm">A</span>
           </div>
-          <span className="font-bold text-lg hidden sm:inline">Adros AI</span>
+          <span className="font-bold text-lg hidden sm:inline bg-gradient-to-r from-purple-300 to-blue-300 bg-clip-text text-transparent">Adros AI</span>
         </div>
 
         {/* Desktop Nav */}

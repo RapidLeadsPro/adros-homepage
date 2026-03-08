@@ -28,7 +28,7 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section id="how-it-works" className="py-20 bg-secondary/30" data-animate>
+    <section id="how-it-works" className="py-20 bg-secondary/30" data-animate="section">
       <div className="container max-w-5xl">
         <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center">
           From Audit to Deployed Ad in One Conversation
@@ -37,12 +37,12 @@ export default function HowItWorks() {
           The complete loop that replaces your marketing team
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6" data-animate-stagger>
           {steps.map((step, i) => (
             <div
               key={i}
-              className="bg-background rounded-lg p-6 border border-border hover:border-primary/50 transition-all hover:shadow-lg"
-              data-animate
+              className="bg-background rounded-xl p-6 border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
+              data-animate="item"
             >
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center text-white font-bold mb-4">
                 {step.number}

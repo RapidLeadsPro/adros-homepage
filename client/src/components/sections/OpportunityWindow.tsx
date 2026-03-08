@@ -1,6 +1,6 @@
 export default function OpportunityWindow() {
   return (
-    <section className="py-20 bg-gradient-to-b from-background to-secondary/20" data-animate>
+    <section className="py-20 bg-gradient-to-b from-background to-secondary/20" data-animate="section">
       <div className="container max-w-4xl">
         <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">
           The Biggest Shift in Paid Advertising Is Happening Right Now. Most Brands Will Miss It.
@@ -15,7 +15,7 @@ export default function OpportunityWindow() {
             In 12 months, the brands winning on Meta and Google won't be the ones with the biggest budgets. They'll be the ones with AI systems that learn faster, create faster, and deploy faster than any human team ever could.
           </p>
 
-          <div className="bg-primary/10 border border-primary/20 rounded-lg p-8 my-12">
+          <div className="bg-primary/10 border border-primary/20 rounded-xl p-8 my-12 shadow-lg shadow-primary/5">
             <p className="text-2xl font-bold text-primary mb-4">This is the window. Right now.</p>
             <p className="text-foreground leading-relaxed">
               Early adopters aren't just getting a head start — they're building a compounding advantage. Every week Adros runs, it learns your audience, your offers, your winning angles. By the time your competitors catch on, you'll have months of AI-powered learning they can't buy.

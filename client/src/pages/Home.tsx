@@ -1,9 +1,6 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "lenis";
-// @ts-ignore - Lenis types are incomplete
-window.Lenis = Lenis;
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/sections/Hero";
 import SocialProof from "@/components/sections/SocialProof";
@@ -16,56 +13,74 @@ import Footer from "@/components/Footer";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const scrollTriggersRef = useRef<ScrollTrigger[]>([]);
 
   useEffect(() => {
-    // Initialize Lenis for smooth scroll
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    });
+    const container = containerRef.current;
+    if (!container || prefersReducedMotion()) return;
 
-    function raf(time: number) {
-      lenis.raf(time);
-    }
+    const triggers: ScrollTrigger[] = [];
 
-    gsap.ticker.add(raf);
-
-    return () => {
-      gsap.ticker.remove(raf);
-      lenis.destroy();
-    };
-  }, []);
-
-  useEffect(() => {
-    // Animate elements on scroll
-    const sections = containerRef.current?.querySelectorAll("[data-animate]");
-    
-    sections?.forEach((section) => {
-      gsap.fromTo(
+    // Section-level: animate when section enters viewport (native scroll)
+    const sections = container.querySelectorAll('[data-animate="section"]');
+    sections.forEach((section) => {
+      const t = gsap.fromTo(
         section,
-        {
-          opacity: 0,
-          y: 60,
-        },
+        { opacity: 0, y: 48 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
+          duration: 0.7,
           ease: "power2.out",
           scrollTrigger: {
             trigger: section,
-            start: "top 80%",
-            end: "top 20%",
+            start: "top 85%",
             toggleActions: "play none none none",
           },
         }
       );
+      if (t.scrollTrigger) triggers.push(t.scrollTrigger);
+    });
+
+    // Stagger children inside sections that have [data-animate="item"]
+    const staggerContainers = container.querySelectorAll("[data-animate-stagger]");
+    staggerContainers.forEach((parent) => {
+      const items = parent.querySelectorAll('[data-animate="item"]');
+      if (items.length === 0) return;
+      const t = gsap.fromTo(
+        items,
+        { opacity: 0, y: 32 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          stagger: 0.08,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: parent,
+            start: "top 82%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+      if (t.scrollTrigger) triggers.push(t.scrollTrigger);
+    });
+
+    scrollTriggersRef.current = triggers;
+    // Refresh after layout so in-view sections animate immediately
+    const id = requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
     });
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      cancelAnimationFrame(id);
+      triggers.forEach((st) => st.kill());
+      scrollTriggersRef.current = [];
     };
   }, []);
 

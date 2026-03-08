@@ -26,7 +26,7 @@ export default function FinalCTA() {
   };
 
   return (
-    <section id="final-cta" className="py-20 bg-gradient-to-b from-background to-secondary/30" data-animate>
+    <section id="final-cta" className="py-24 bg-gradient-to-b from-background via-secondary/20 to-secondary/30" data-animate="section">
       <div className="container max-w-3xl">
         <h2 className="text-4xl md:text-5xl font-bold mb-6 text-center">
           Every Week Without Adros Is Another Week of Guessing
@@ -36,7 +36,7 @@ export default function FinalCTA() {
           Join the waitlist now and be first in line when we launch. Early access members get founding pricing and direct input on the features we build.
         </p>
 
-        <form onSubmit={handleSubmit} className="bg-secondary/30 border border-border rounded-lg p-8 mb-8">
+        <form onSubmit={handleSubmit} className="bg-secondary/30 border border-border rounded-xl p-8 mb-8 shadow-xl">
           <div className="flex flex-col sm:flex-row gap-4 mb-6">
             <Input
               type="email"
@@ -59,7 +59,7 @@ export default function FinalCTA() {
           </p>
         </form>
 
-        <div className="bg-primary/5 border border-primary/20 rounded-lg p-6 text-center">
+        <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 text-center">
           <p className="text-sm text-muted-foreground">
             Questions? Email us at <a href="mailto:hello@adros.ai" className="text-primary hover:underline">hello@adros.ai</a>
           </p>

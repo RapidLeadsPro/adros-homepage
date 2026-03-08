@@ -15,7 +15,7 @@ export default function PainAgitation() {
   ];
 
   return (
-    <section className="py-20 bg-background" data-animate>
+    <section className="py-20 bg-background" data-animate="section">
       <div className="container max-w-4xl">
         <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">
           You're Not Bad at Ads. You're Just Doing It Alone.
@@ -37,7 +37,7 @@ export default function PainAgitation() {
             ))}
           </div>
 
-          <div className="border-l-4 border-primary pl-6 py-4 bg-primary/5 rounded">
+          <div className="border-l-4 border-primary pl-6 py-4 bg-primary/5 rounded-xl">
             <p className="font-semibold mb-4">What you actually need:</p>
             <div className="space-y-3">
               {solutions.map((solution, i) => (
