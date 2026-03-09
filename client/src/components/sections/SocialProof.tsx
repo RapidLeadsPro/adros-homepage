@@ -7,12 +7,12 @@ export default function SocialProof() {
   ];
 
   return (
-    <section className="py-16 bg-secondary/40 border-y border-border" data-animate="section">
+    <section className="py-16 bg-secondary/30 border-y border-border">
       <div className="container">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8" data-animate-stagger>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, i) => (
-            <div key={i} className="text-center" data-animate="item">
-              <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent mb-2">
+            <div key={i} className="text-center" data-animate>
+              <div className="text-2xl md:text-3xl font-bold text-primary mb-2">
                 {stat.number}
               </div>
               <p className="text-sm text-muted-foreground">{stat.label}</p>

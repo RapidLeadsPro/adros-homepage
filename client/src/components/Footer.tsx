@@ -4,42 +4,61 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-secondary/20 border-t border-border py-12">
-      <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          {/* Left - Copyright */}
+    <footer className="border-t border-white/5 bg-[#080d18]">
+      <div className="container py-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+          {/* Brand */}
+          <div className="md:col-span-1">
+            <div className="flex items-center gap-2.5 mb-4">
+              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#39FF14] to-cyan-500 flex items-center justify-center">
+                <span className="text-black font-bold text-xs">A</span>
+              </div>
+              <span className="font-bold text-base tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                ADROS
+              </span>
+            </div>
+            <p className="text-sm text-gray-500 leading-relaxed">
+              Your AI marketing department. Research, strategy, creative, deployment — all automated.
+            </p>
+          </div>
+
+          {/* Product */}
           <div>
-            <p className="text-sm text-muted-foreground">
-              © {currentYear} Adros AI. All rights reserved.
-            </p>
+            <h4 className="text-sm font-semibold text-white mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Product</h4>
+            <ul className="space-y-3">
+              <li><Link href="/#how-it-works" className="text-sm text-gray-500 hover:text-white transition-colors">How It Works</Link></li>
+              <li><Link href="/#capabilities" className="text-sm text-gray-500 hover:text-white transition-colors">Capabilities</Link></li>
+              <li><Link href="/pricing" className="text-sm text-gray-500 hover:text-white transition-colors">Pricing</Link></li>
+            </ul>
           </div>
 
-          {/* Center - Links */}
-          <div className="flex justify-center gap-6">
-            <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Privacy Policy
-            </Link>
-            <span className="text-muted-foreground">·</span>
-            <Link href="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Terms of Service
-            </Link>
+          {/* Company */}
+          <div>
+            <h4 className="text-sm font-semibold text-white mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Company</h4>
+            <ul className="space-y-3">
+              <li><a href="mailto:hello@adros.ai" className="text-sm text-gray-500 hover:text-white transition-colors">Contact</a></li>
+              <li><a href="https://app.adros.ai" className="text-sm text-gray-500 hover:text-white transition-colors">Sign In</a></li>
+            </ul>
           </div>
 
-          {/* Right - Contact */}
-          <div className="text-right">
-            <p className="text-sm text-muted-foreground">
-              Questions?{" "}
-              <a href="mailto:hello@adros.ai" className="text-primary hover:underline">
-                hello@adros.ai
-              </a>
-            </p>
+          {/* Legal */}
+          <div>
+            <h4 className="text-sm font-semibold text-white mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Legal</h4>
+            <ul className="space-y-3">
+              <li><Link href="/privacy" className="text-sm text-gray-500 hover:text-white transition-colors">Privacy Policy</Link></li>
+              <li><Link href="/terms" className="text-sm text-gray-500 hover:text-white transition-colors">Terms of Service</Link></li>
+            </ul>
           </div>
         </div>
 
-        {/* Company Info */}
-        <div className="border-t border-border pt-8 text-center text-xs text-muted-foreground">
-          <p className="mb-2">Adros AI</p>
-          <p>22 Sin Ming Lane #06-76 Midview City, Singapore 573969</p>
+        {/* Bottom */}
+        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-gray-600">
+            &copy; {currentYear} Adros AI. All rights reserved.
+          </p>
+          <p className="text-xs text-gray-600">
+            22 Sin Ming Lane #06-76 Midview City, Singapore 573969
+          </p>
         </div>
       </div>
     </footer>

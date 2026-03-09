@@ -1,11 +1,24 @@
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "wouter";
 
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [location] = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToSection = (id: string) => {
+    if (location !== "/") {
+      window.location.href = `/#${id}`;
+      return;
+    }
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -14,41 +27,61 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-[#0c1220]/90 backdrop-blur-xl border-b border-white/5 shadow-lg shadow-black/20"
+          : "bg-transparent"
+      }`}
+    >
       <div className="container flex items-center justify-between h-16">
         {/* Logo */}
-        <div className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center shadow-md shadow-purple-500/20">
-            <span className="text-white font-bold text-sm">A</span>
+        <Link href="/" className="flex items-center gap-2.5 group">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#39FF14] to-cyan-500 flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:shadow-emerald-500/40 transition-shadow">
+            <span className="text-black font-bold text-sm">A</span>
           </div>
-          <span className="font-bold text-lg hidden sm:inline bg-gradient-to-r from-purple-300 to-blue-300 bg-clip-text text-transparent">Adros AI</span>
-        </div>
+          <span className="font-bold text-lg tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+            ADROS
+          </span>
+        </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           <button
             onClick={() => scrollToSection("how-it-works")}
-            className="text-sm font-medium hover:text-primary transition-colors"
+            className="text-sm font-medium text-gray-400 hover:text-white transition-colors"
           >
             How It Works
           </button>
           <button
-            onClick={() => scrollToSection("why-adros")}
-            className="text-sm font-medium hover:text-primary transition-colors"
+            onClick={() => scrollToSection("capabilities")}
+            className="text-sm font-medium text-gray-400 hover:text-white transition-colors"
           >
-            Why Adros
+            Capabilities
           </button>
-          <Button
-            onClick={() => scrollToSection("final-cta")}
-            className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+          <Link
+            href="/pricing"
+            className="text-sm font-medium text-gray-400 hover:text-white transition-colors"
           >
-            Get Early Access
+            Pricing
+          </Link>
+          <a
+            href="https://app.adros.ai"
+            className="text-sm font-medium text-gray-400 hover:text-white transition-colors"
+          >
+            Sign In
+          </a>
+          <Button
+            asChild
+            className="bg-gradient-to-r from-[#39FF14] to-cyan-500 hover:from-[#50FF30] hover:to-cyan-400 text-black font-semibold shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 transition-all"
+          >
+            <a href="https://app.adros.ai">Get Started</a>
           </Button>
         </div>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden"
+          className="md:hidden text-gray-400 hover:text-white"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -57,25 +90,38 @@ export default function Navigation() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-border bg-background">
-          <div className="container py-4 flex flex-col gap-4">
+        <div className="md:hidden border-t border-white/5 bg-[#0c1220]/95 backdrop-blur-xl">
+          <div className="container py-6 flex flex-col gap-4">
             <button
               onClick={() => scrollToSection("how-it-works")}
-              className="text-sm font-medium hover:text-primary transition-colors text-left"
+              className="text-sm font-medium text-gray-400 hover:text-white transition-colors text-left py-2"
             >
               How It Works
             </button>
             <button
-              onClick={() => scrollToSection("why-adros")}
-              className="text-sm font-medium hover:text-primary transition-colors text-left"
+              onClick={() => scrollToSection("capabilities")}
+              className="text-sm font-medium text-gray-400 hover:text-white transition-colors text-left py-2"
             >
-              Why Adros
+              Capabilities
             </button>
-            <Button
-              onClick={() => scrollToSection("final-cta")}
-              className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+            <Link
+              href="/pricing"
+              className="text-sm font-medium text-gray-400 hover:text-white transition-colors py-2"
+              onClick={() => setMobileMenuOpen(false)}
             >
-              Get Early Access
+              Pricing
+            </Link>
+            <a
+              href="https://app.adros.ai"
+              className="text-sm font-medium text-gray-400 hover:text-white transition-colors py-2"
+            >
+              Sign In
+            </a>
+            <Button
+              asChild
+              className="w-full bg-gradient-to-r from-[#39FF14] to-cyan-500 hover:from-[#50FF30] hover:to-cyan-400 text-black font-semibold mt-2"
+            >
+              <a href="https://app.adros.ai">Get Started</a>
             </Button>
           </div>
         </div>
