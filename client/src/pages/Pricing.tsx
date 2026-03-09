@@ -8,7 +8,7 @@ import { Check, X, ArrowRight, Zap, Shield, Clock, Star } from 'lucide-react';
  * Adros AI Pricing Page
  * Design: Dark SaaS, Space Grotesk headings + DM Sans body
  * Plans: Free, Pro ($99/mo), Enterprise (Custom)
- * Add-on: Done-For-You Setup (SGD 997)
+ * Add-on: Done-For-You Setup (USD 997)
  */
 
 function useRevealOnScroll() {
@@ -268,7 +268,7 @@ export default function Pricing() {
               <div className="p-10 bg-white/[0.02] border-l border-white/5 flex flex-col justify-center items-center text-center">
                 <p className="text-sm text-gray-500 mb-2">One-Time Setup Fee</p>
                 <div className="mb-2">
-                  <span className="text-5xl font-bold text-white" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>SGD 997</span>
+                  <span className="text-5xl font-bold text-white" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>USD 997</span>
                 </div>
                 <p className="text-sm text-gray-500 mb-8">One-time payment. No recurring fees for the setup.</p>
 
